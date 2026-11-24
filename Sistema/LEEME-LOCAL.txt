@@ -1,0 +1,21 @@
+MILONGA BAZAR — VERSION LOCAL
+
+App de escritorio y tienda local comparten Sistema\App\milonga_datos.db. La app crea o actualiza las tablas al iniciar. Antes de usar esta versión, cerrá la app y PHP, hacé copia de la base, luego volvé a iniciar la app para aplicar las migraciones.
+
+APP (PowerShell)
+  cd D:\2026\Bazar\Sistema\App
+  python -m pip install -r requirements.txt
+  python main.py
+
+TIENDA (otra ventana de PowerShell)
+  cd D:\2026\Bazar\Sistema\Web
+  C:\xampp\php\php.exe -S 127.0.0.1:8000
+  Abrí http://127.0.0.1:8000/
+  Detené con Ctrl+C.
+
+La app incluye categorías administrables, sugerencias de productos, fotos, ventas locales e historial de stock. Las solicitudes de la tienda reservan unidades; no hay cobro online.
+
+Manual detallado: Sistema\MANUAL-USUARIO.md
+
+La carpeta de fotos del catálogo es Sistema\Web\uploads. Respaldá esa carpeta junto con milonga_datos.db.
+No publiques el servidor local ni uses la base SQLite desde varias computadoras.

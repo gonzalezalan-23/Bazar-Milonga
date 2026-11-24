@@ -1,0 +1,19 @@
+# Preferencias locales de la app de escritorio
+Sistema/App/preferencias.json
+
+# Entornos virtuales Python
+.venv/
+venv/
+env/
+
+# Caché de Python
+__pycache__/
+*.py[cod]
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs PHP
+*.log
