@@ -363,7 +363,9 @@ button,input,select,textarea {
   border-radius: 5px;
   padding: 0 13px;
   height: 40px;
-  width: 260px;
+  flex: 1;
+  min-width: 220px;
+  max-width: 560px;
   color: #875064;
 }
 .search input {
@@ -482,6 +484,43 @@ button,input,select,textarea {
   color: #887983;
 }
 
+/* Paginación del catálogo */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+.pagination button {
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 5px;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 10px;
+  color: #71636b;
+  font-size: 13px;
+  cursor: pointer;
+  transition: .15s;
+}
+.pagination button:hover {
+  border-color: #A64F72;
+  color: #A64F72;
+}
+.pagination button[aria-current="page"] {
+  background: #A64F72;
+  border-color: #A64F72;
+  color: #fff;
+  font-weight: 700;
+  cursor: default;
+}
+.pagination button:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
 /* About and contact */
 .about {
   max-width: 1180px;
@@ -489,11 +528,12 @@ button,input,select,textarea {
   padding: 60px 8%;
   background: #f5eff0;
   display: grid;
-  grid-template-columns: .25fr 1fr .3fr;
+  grid-template-columns: 0.5fr 1fr 1fr;
   align-items: center;
+  gap: 40px;
 }
 .about-flower {
-  font-size: 64px;
+  font-size: 80px;
   color: #bd8197;
 }
 .about h2 {
@@ -513,17 +553,18 @@ button,input,select,textarea {
   cursor: pointer;
 }
 .about-stamp {
-  justify-self: end;
-  border: 1px solid #d9a7b9;
+  justify-self: center;
+  border: 2px solid #d9a7b9;
   border-radius: 50%;
-  width: 72px;
-  height: 72px;
+  width: 180px;
+  height: 180px;
   display: grid;
   place-content: center;
   text-align: center;
   color: #bd6686;
-  font: 10px/1.4 var(--serif);
+  font: 600 30px/1.4 var(--serif);
   transform: rotate(12deg);
+  letter-spacing: .06em;
 }
 .contact {
   max-width: 1180px;
@@ -551,32 +592,33 @@ button,input,select,textarea {
 /* Footer and shopping cart */
 footer {
   border-top: 1px solid #f0e7ea;
-  padding: 23px max(calc((100% - 1180px)/2),5.5%);
-  display: flex;
+  padding: 20px max(calc((100% - 1180px)/2),5.5%);
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
+  gap: 12px 20px;
   color: #94858d;
   font-size: 10px;
 }
 footer .brand {
   color: var(--ink);
-  transform: scale(.86);
-  transform-origin: left center;
 }
-footer>a:last-child {
-  font-size: 10px;
+footer > span {
+  font-size: 12px;
+  line-height: 1.5;
+}
+footer > a:last-child {
+  font-size: 12px;
 }
 .footer-social {
   display: flex;
-  gap: 16px;
-  font-size: 12px;
+  gap: 14px;
+  align-items: center;
 }
 .footer-social a {
   color: #875064;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  display: flex;
+  align-items: center;
 }
 .footer-social a:hover {
   color: var(--pink);
@@ -911,14 +953,23 @@ dialog::backdrop {
   .about {
     margin-bottom: 60px;
     padding: 35px 8%;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 16px;
   }
   .about-flower {
     display: none;
   }
   .about-stamp {
-    grid-column: 2;
-    grid-row: 1;
+    justify-self: center;
+    width: 110px;
+    height: 110px;
+    font-size: 13px;
+  }
+  .about p {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
   .about h2 {
     font-size: 30px;
@@ -946,17 +997,23 @@ dialog::backdrop {
   }
   footer {
     padding: 18px 5%;
-    gap: 7px;
-    flex-wrap: wrap;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto;
   }
   footer .brand {
-    transform: scale(.75);
-    width: 130px;
+    grid-column: 1;
+    grid-row: 1 / 3;
   }
-  footer>span {
-    font-size: 8px;
+  footer > span {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 11px;
   }
-  footer>a:last-child {
+  .footer-social {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  footer > a:last-child {
     display: none;
   }
 }
@@ -1297,7 +1354,7 @@ dialog::backdrop {
   font-size: 16px;
 }
 .benefits small, .sample-note, .search input, .filter, .product-tag, .product-category, .product-stock, footer, .about-stamp {
-  font-size: 12px;
+  font-size: 16px;
 }
 .product-description {
   font-size: 14px;
@@ -1494,8 +1551,7 @@ dialog::backdrop {
     align-items: flex-start;
   }
   footer > span {
-    max-width: 55%;
-    line-height: 1.5;
+    max-width: 100%;
   }
 }
 @media (max-width: 420px) {
@@ -1543,6 +1599,25 @@ dialog::backdrop {
   #checkout-form {
     padding: 28px 18px 20px;
   }
+  footer {
+    padding: 16px 5%;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 8px 12px;
+  }
+  footer .brand {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .footer-social {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  footer > span {
+    grid-column: 1 / 4;
+    grid-row: 2;
+    font-size: 11px;
+  }
 }
 @media (max-width: 340px) {
   .brand-logo {
@@ -1566,6 +1641,11 @@ dialog::backdrop {
     padding-top: 28px;
     padding-bottom: 22px;
     gap: 16px;
+    text-align: center;
+  }
+  .hero-copy > p {
+    margin-left: auto;
+    margin-right: auto;
   }
   .hero h1 {
     margin: 12px 0;
@@ -1617,8 +1697,8 @@ html {
   scroll-margin-top: 120px;
 }
 footer .brand-logo {
-  width: 132px;
-  height: 72px;
+  width: 110px;
+  height: 60px;
 }
 .hero-art.has-photo {
   border-radius: 18px;

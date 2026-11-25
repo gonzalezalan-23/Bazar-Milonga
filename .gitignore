@@ -1,3 +1,14 @@
+# Base de datos y backups (se genera automáticamente al iniciar la app)
+Sistema/App/milonga_datos.db
+Sistema/App/milonga_datos.backup_*.db
+
+# Fotos de productos subidas desde la app
+Sistema/Web/uploads/*
+!Sistema/Web/uploads/.gitkeep
+
+# Configuración local del local (dirección y foto de portada)
+Sistema/Web/tienda.json
+
 # Preferencias locales de la app de escritorio
 Sistema/App/preferencias.json
 
